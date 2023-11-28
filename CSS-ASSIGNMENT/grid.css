@@ -1,0 +1,113 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: black;
+}
+nav {
+    height: 60px;
+    display: none;
+}
+.onee {
+    border: solid 2px black;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto;
+    gap: 10px;
+    /* grid-auto-rows: 145px; */
+    grid-auto-rows: 23.7vh;
+}
+
+#one {
+    grid-column: 1/5;
+}
+#two {
+    grid-column: 5/7;
+}
+
+#three {
+    grid-column: 1/2;
+}
+
+#four {
+    grid-column: 2/6;
+}
+
+#five {
+    grid-column: 6/7;
+}
+
+#six {
+    grid-column: 1/4;
+}
+
+#seven {
+    grid-column: 4/7;
+}
+
+#eight {
+    grid-column: 1/3;
+}
+
+#nine {
+    grid-column: 3/5;
+}
+
+#ten {
+    grid-column: 5/7;
+}
+
+#eleven {
+    grid-row: 1/5;
+    grid-column: 7/8;
+    color: white;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+.sidenav {
+    margin-right: 10px;
+}
+
+.sidenav>h3 {
+    font-size: 35px;
+    text-align: right;
+    padding: 10px;
+}
+
+.list {
+    font-size: 20px;
+    text-align: right;
+    padding: 10px;
+}
+
+p {
+    padding: 5px;
+}
+
+p:hover {
+    color: red;
+}
+
+.icon {
+    padding: 20px 10px;
+    color: white;
+    height: 50px;
+    font-size: 25px;
+}
+
+a>i {
+    color: white;
+}
+
+a>i:hover {
+    color: red;
+}
