@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Image Slider</title>
+  <style>
+    .slider-container {
+      width: 600px;
+      height: 400px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .slider-image {
+      width: 100%;
+      height: 100%;
+      display: none;
+    }
+
+    .slider-image.active {
+      display: block;
+    }
+
+    .thumbnail-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    .thumbnail {
+      width: 100px;
+      height: 67px;
+      margin: 0 5px;
+      cursor: pointer;
+    }
+
+    .slider-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .slider-controls button {
+      padding: 5px 10px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="slider-container">
+    
+  </div>
+  <div class="slider-controls">
+    <button id="prevBtn">Previous</button>
+    <div class="thumbnail-container"></div>
+    <button id="nextBtn">Next</button>
+  </div>
+
+  <script>
+    const imageUrls = [
+      'https://tse2.mm.bing.net/th?id=OIP.xung4mlBfvUR3RKzjnRY2AHaEK&pid=Api&P=0&h=180',
+      'https://tse2.mm.bing.net/th?id=OIP.DpcLyyRCeTWoiiMNdCTXxQHaEK&pid=Api&P=0&h=180',
+      'https://tse4.mm.bing.net/th?id=OIP.y2wQKuJK8ZMxUCgqhh03_wHaD4&pid=Api&P=0&h=180',
+      'https://tse3.mm.bing.net/th?id=OIP.bPBCgvp9N0SUbVYJnBg2IQHaEo&pid=Api&P=0&h=180',
+      'https://tse4.mm.bing.net/th?id=OIP.P8fJWbgoZs1jfbe7aaTLHQHaEK&pid=Api&P=0&h=180'
+    ];
+
+    const sliderContainer = document.querySelector('.slider-container');
+    const thumbnailContainer = document.querySelector('.thumbnail-container');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    let currentIndex = 0;
+
+    function createThumbnailElement(url, index) {
+      const thumbnail = document.createElement('img');
+      thumbnail.src = url;
+      thumbnail.classList.add('thumbnail');
+      thumbnail.addEventListener('click', () => showImage(index));
+      return thumbnail;
+    }
+
+    function showImage(index) {
+      currentIndex = index;
+
+      
+      const existingImage = sliderContainer.querySelector('.slider-image');
+      if (existingImage) {
+        sliderContainer.removeChild(existingImage);
+      }
+
+      
+      const newImage = document.createElement('img');
+      newImage.src = imageUrls[index];
+      newImage.classList.add('slider-image', 'active');
+      sliderContainer.appendChild(newImage);
+
+      
+      const thumbnails = document.querySelectorAll('.thumbnail');
+      thumbnails.forEach(thumbnail => thumbnail.classList.remove('active'));
+
+      
+      thumbnails[index].classList.add('active');
+    }
+
+    function showPrevImage() {
+      currentIndex = (currentIndex - 1 + imageUrls.length) % imageUrls.length;
+      showImage(currentIndex);
+    }
+
+    function showNextImage() {
+      currentIndex = (currentIndex + 1) % imageUrls.length;
+      showImage(currentIndex);
+    }
+
+    imageUrls.forEach((url, index) => {
+      const thumbnailElement = createThumbnailElement(url, index);
+      thumbnailContainer.appendChild(thumbnailElement);
+    });
+
+    prevBtn.addEventListener('click', showPrevImage);
+    nextBtn.addEventListener('click', showNextImage);
+
+    showImage(0); 
+  </script>
+</body>
+</html>
